@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Electrical & Computer Engineering</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            color: #0f172a;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* Section Headings */
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Experience & Education */
+        .timeline-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .timeline-item .meta {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .skill-category ul {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .skill-category li {
+            padding: 0.25rem 0;
+        }
+
+        /* Contact Section */
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Edward Lei's Portfolio</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Electrical & Computer Engineering Student | Hardware & Embedded Systems</h1>
+            <p>Passionate about building custom hardware and software systems, bridging the gap between digital design and efficient software tooling.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Resume / Contact</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I am an ECE undergraduate student at Carnegie Mellon University with a strong academic and practical focus on digital circuit design, FPGA validation, and EDA software flows.</p>
+                <p>My work centers around designing custom silicon, integrating embedded systems hardware with clean firmware, and optimizing verification flows. I love turning theoretical logic architectures into physical reality.</p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div>
+                        <h3>Custom Silicon / FPGA Design</h3>
+                        <p>SystemVerilog VGA slot machine implementation synthesized and validated on hardware, targeting open-source ASIC tapeouts via Tiny Tapeout workflows.</p>
+                        <div class="tech-tags">
+                            <span class="tag">SystemVerilog</span>
+                            <span class="tag">Yosys</span>
+                            <span class="tag">OpenLane</span>
+                            <span class="tag">FPGA</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Edward2005lol/Slot_Machine_Chip_Design.git" target="_blank">GitHub &rarr;</a>
+                        <a href="#" target="_blank">Docs &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <h3>Embedded Systems & Hardware Integration</h3>
+                        <p>Braille character input peripheral and hardware display controller built using microcontrollers, custom logic shift registers, and low-level serial communication protocols.</p>
+                        <div class="tech-tags">
+                            <span class="tag">C</span>
+                            <span class="tag">Assembly</span>
+                            <span class="tag">Microcontrollers</span>
+                            <span class="tag">SPI/I2C</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">GitHub &rarr;</a>
+                        <a href="#" target="_blank">Demo &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <h3>Software & Tooling Optimization</h3>
+                        <p>High-performance C++ EDA static timing analysis utility focusing on algorithmic graph topological sorting and delay calculation improvements.</p>
+                        <div class="tech-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Algorithms</span>
+                            <span class="tag">Make</span>
+                            <span class="tag">Linux</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">GitHub &rarr;</a>
+                        <a href="#" target="_blank">Source &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience & Education</h2>
+            
+            <div class="timeline-item">
+                <h3>Carnegie Mellon University</h3>
+                <div class="meta">B.S. in Electrical and Computer Engineering | Expected Graduation Details</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Technical Internships & Programs</h3>
+                <div class="meta">Raina Tech | JACS Solutions | RWE Portugal</div>
+                <ul>
+                    <li>Contributed to engineering lifecycles ranging from hardware testing and debugging to firmware deployment.</li>
+                    <li>Collaborated with multi-functional engineering teams to validate hardware performance and reliability metrics.</li>
+                    <li>Automated testing workflows, reducing manual verification overhead.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>C++</li>
+                        <li>SystemVerilog / Verilog</li>
+                        <li>Python</li>
+                        <li>C & Assembly</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Hardware & EDA Tools</h3>
+                    <ul>
+                        <li>FPGA Boards & Arduino</li>
+                        <li>Yosys, nextpnr</li>
+                        <li>OpenLane & OpenROAD</li>
+                        <li>Git & Linux Environments</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Concepts</h3>
+                    <ul>
+                        <li>RTL-to-GDSII Flow</li>
+                        <li>Static Timing Analysis (STA)</li>
+                        <li>Finite State Machines (FSM)</li>
+                        <li>Digital Logic Design</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact & Links</h2>
+            <p>I am actively looking for full-time roles and internships in hardware engineering, embedded systems, and digital design. Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:edwardlei783@gmail.com">Email Me</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/edward-lei-69203a212" target="_blank">LinkedIn</a>
+                <a href="Lei_Resume_Hardware.pdf" download="Lei_Resume_Hardware" target="_blank">Download Resume (PDF)</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Portfolio. Built with HTML & CSS.</p>
+    </footer>
+
+</body>
+</html>
